@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import useTasks from "../hooks/useTasks";
 
 // Creazione del contesto
 const TasksContext = createContext();
@@ -6,19 +7,14 @@ const TasksContext = createContext();
 // Fornitura del contesto
 function TasksProvider({children}) {
 
-    const [tasks, setTasks] = useState([]); 
-    
-    useEffect( () => {
-        const apiUrl = import.meta.env.VITE_API_URL;
+    // Recupero stato e funzioni dei task tramite il custom hook useTasks
+    const tasksData = useTasks();
 
-        fetch(`${apiUrl}/tasks`)
-            .then(response => response.json())
-            .then(data => setTasks(data))
-            .catch(error => console.error(error));
-    }, []);
-
+    /************
+        RENDER
+    ************/
     return (
-        <TasksContext.Provider value={{ tasks, setTasks }}>
+        <TasksContext.Provider value={tasksData}>
             {children}
         </TasksContext.Provider>
     );
