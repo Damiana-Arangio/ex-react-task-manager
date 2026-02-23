@@ -1,4 +1,5 @@
 // Componente che rappresenta una singola riga della tabella dei task
+import { memo } from 'react';
 
 function TaskRow(props) {
 
@@ -20,4 +21,4 @@ function TaskRow(props) {
     )
 }
 
-export default TaskRow;
+export default memo(TaskRow);

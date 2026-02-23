@@ -1,5 +1,6 @@
 /* Pagina che mostra l'elenco dei Task */
 import { useTasksContext } from '../context/TasksContext'
+import { memo } from 'react';
 import TaskRow from '../components/TaskRow';
 
 function TaskList() {
