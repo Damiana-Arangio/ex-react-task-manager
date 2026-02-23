@@ -10,7 +10,11 @@ function TaskRow(props) {
     return(
         <tr>
             <td>{task.title}</td>
-            <td>{task.status}</td>
+            <td>
+                <span className={`status ${task.status.toLowerCase().replace(" ", "-")}`}>
+                    {task.status}
+                </span>
+            </td>
             <td>{new Date(task.createdAt).toLocaleDateString()}</td>
         </tr>
     )
