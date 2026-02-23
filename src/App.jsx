@@ -1,4 +1,3 @@
-import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'   // Libreria di Routing
 import DefaultLayout from './layouts/Layout'                      // Layout principale
 import TaskList from './pages/TaskList'                           // Pagina che mostra la lista dei task

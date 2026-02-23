@@ -18,12 +18,19 @@ function Navbar() {
         RENDER 
     *************/
     return(
-        <nav>
-            <ul>
+        <nav className="navbar">
+            <ul className="navbar-list">
                 {
-                    links.map( link => (
-                        <li key={link.path}> 
-                            <NavLink to={link.path}> {link.label} </NavLink> 
+                    links.map(link => (
+                        <li key={link.path}>
+                            <NavLink
+                                to={link.path}
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                            >
+                                {link.label}
+                            </NavLink>
                         </li>
                     ))
                 }
