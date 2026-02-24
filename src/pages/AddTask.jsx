@@ -59,7 +59,7 @@ function AddTask() {
             {/* Validazione titolo */}
             {
                 title && (
-                    <p>
+                    <p className="error-color">
                         {!isTitleValid ? "Titolo non valido!" : ""}
                     </p>
                 )
