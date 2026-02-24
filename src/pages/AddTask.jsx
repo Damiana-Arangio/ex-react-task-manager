@@ -1,10 +1,13 @@
 /* Pagina che consente di aggiungere un nuovo Task */
 import { useMemo, useRef, useState } from "react";
+import { useTasksContext } from "../context/TasksContext";
 
 // Set di caratteri validi per la validazione di title
 const symbols = `!@#$%^&*()-_=+[]{}|;:'\\",.<>?/~`;
 
 function AddTask() {
+
+    const {addTask} = useTasksContext();
 
     /**********
         HOOK
@@ -86,9 +89,9 @@ function AddTask() {
                     ref={statusRef}
                     defaultValue="to-do"
                 >
-                    <option value="to-do"> To do</option>
-                    <option value="doing"> Doing</option>
-                    <option value="done"> Done </option>
+                    <option value="To do"> To do</option>
+                    <option value="Doing"> Doing </option>
+                    <option value="Done"> Done </option>
                 </select>
             </div>
 
@@ -108,8 +111,9 @@ function AddTask() {
     ***************/
 
     // Funzione che gestisce il submit del form
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
+
 
         // Creo nuovo task
         const newTask = {
@@ -118,7 +122,20 @@ function AddTask() {
             status: statusRef.current.value
         }
 
-        console.log("New Task: ", newTask);
+        // Chiamata funzione per aggiungere il nuovo Task
+        try {
+            await addTask(newTask);
+            alert("Task creata con successo!");
+
+            // Reset del form
+            setTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "";
+        }
+        catch(error) {
+            alert(error.message);
+        }
+        
     }
 }
 
