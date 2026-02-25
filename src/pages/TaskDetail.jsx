@@ -1,13 +1,15 @@
 // Componente che mostra i dettagli di un task
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useTasksContext } from '../context/TasksContext'
+import { useState } from "react";
+import Modal from "../components/Modal";
+
 
 function TaskDetail() {
 
     // Destructuring
     const { id } = useParams();
     const numericId = parseInt(id);
-
     const { tasks, removeTask } = useTasksContext();
 
     // Recupero task
@@ -17,14 +19,18 @@ function TaskDetail() {
         return <h2>Task non trovata</h2>;
     } 
 
-    // Hook
+    /************
+        HOOK
+    *************/
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
     /************
         RENDER
     *************/
     return (
         <>
+            {/* Task */}
             <article>
                 <h1>{taskClicked.title}</h1>
 
@@ -42,9 +48,20 @@ function TaskDetail() {
                 </p>
             </article>
 
-            <button onClick={handleClick}>
+            {/* Bottone */}
+            <button onClick = {() => setShowModal(true)}>
                 Elimina Task
             </button>
+
+            {/* Modale */}
+            <Modal
+                show={showModal}
+                title = {"Conferma Eliminazione"}
+                content = {`Sei sicuro di voler eliminare "${taskClicked.title}"?`}
+                onConfirm = {onConfirm}
+                onClose={onClose}
+            />
+            
         </>
     );
 
@@ -53,7 +70,7 @@ function TaskDetail() {
     ***************/
 
     // Chiamata funzione per eliminare un Task
-    async function handleClick() {
+    async function onConfirm() {
 
         try {
             await removeTask(numericId);
@@ -64,6 +81,10 @@ function TaskDetail() {
         catch(error) {
             alert(error.message);
         }
+    }
+
+    function onClose() {
+        setShowModal(false);
     }
 }
 
