@@ -285,3 +285,73 @@ article+button:hover {
     background-color: #dc2626;
     transform: translateY(-1px);
 }
+
+/*************
+    MODAL
+**************/
+
+.container-modale-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(15, 23, 42, 0.6);
+    
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+}
+
+.modale {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Titolo */
+.modale h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+/* Testo */
+.modale p {
+    font-size: 0.95rem;
+    color: #334155;
+    margin-bottom: 1.5rem;
+}
+
+/* Bottoni modale */
+.modale button {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Bottone annulla */
+.modale button:first-of-type {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    margin-right: 0.5rem;
+}
+
+.modale button:first-of-type:hover {
+    background-color: #cbd5e1;
+}
+
+/* Bottone conferma */
+.modale button:last-of-type {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.modale button:last-of-type:hover {
+    background-color: #dc2626;
+}

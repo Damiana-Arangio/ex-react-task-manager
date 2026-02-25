@@ -8,7 +8,7 @@ function Modal(props) {
     // Contenuto Modale
     return show && createPortal (
 
-        <div className="modale-overlay">
+        <div className="container-modale-overlay">
             <div className="modale">
 
                 {/* Contenuto principale */}

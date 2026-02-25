@@ -57,7 +57,7 @@ function TaskDetail() {
             <Modal
                 show={showModal}
                 title = {"Conferma Eliminazione"}
-                content = {`Sei sicuro di voler eliminare "${taskClicked.title}"?`}
+                content = {`Sei sicuro di voler eliminare "${taskClicked.title}" ?`}
                 onConfirm = {onConfirm}
                 onClose={onClose}
             />
