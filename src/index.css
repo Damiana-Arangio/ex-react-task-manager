@@ -107,6 +107,18 @@ tbody tr:hover {
     transition: background-color 0.2s ease;
 }
 
+/* Link titolo task */
+table a {
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+table a:hover {
+    color: #0ea5e9;
+}
+
 /*******************
     STATUS STYLE
 *******************/
@@ -225,4 +237,51 @@ form button:disabled {
     color: #dc2626;
     font-size: 0.85rem;
     margin-top: -0.5rem;
+}
+
+/*******************
+    TASK DETAIL
+*******************/
+
+/* Contenitore dettaglio */
+article {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Titolo task */
+article h1 {
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+/* Paragrafi */
+article p {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: #334155;
+}
+
+/* Bottone elimina fuori dal form */
+article+button {
+    display: block;
+    margin: 1rem auto 0 auto;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #ef4444;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+article+button:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
 }
