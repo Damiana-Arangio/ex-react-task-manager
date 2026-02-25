@@ -4,6 +4,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 function useTasks() {
 
+    /***********
+        HOOK
+    ***********/
     const [tasks, setTasks] = useState([]); 
     
     // Chiamata API per recuperare la lista dei Tasks
@@ -14,6 +17,11 @@ function useTasks() {
             .then(data => setTasks(data))
             .catch(error => console.error(error));
     }, []);
+
+
+    /**************
+        FUNZIONI
+    ***************/
 
     // Funzione per aggiungere un nuovo task
     async function addTask(newTask) {
@@ -37,9 +45,23 @@ function useTasks() {
     }
 
     // Funzione per rimuovere un task
-    function removeTask() {
+    async function removeTask(id) {
+        const response = await fetch(`${apiUrl}/tasks/${id}`,
+            { method: "DELETE" });
+        const data = await response.json();
 
+        // Controllo se success è true/false
+        if(data.success) {
+
+            setTasks(currTasks => (
+                currTasks.filter(task => task.id !== id)
+            ));
+        }
+        else{
+            throw new Error(data.message);
+        }
     }
+    
     // Funzione per modificare un task
     function updateTask() {
 
