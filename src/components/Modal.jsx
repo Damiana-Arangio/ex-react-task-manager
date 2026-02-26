@@ -13,7 +13,7 @@ function Modal(props) {
 
                 {/* Contenuto principale */}
                 <h1> {title} </h1>
-                <p> {content} </p>
+                {content}
 
                 {/* Bottoni */}
                 <button onClick={onClose}> Annulla </button>

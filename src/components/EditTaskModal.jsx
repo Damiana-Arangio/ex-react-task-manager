@@ -38,7 +38,7 @@ function EditTaskModal(props) {
                 content = {
                     <form onSubmit={handleSubmit} ref={editFormRef} >
                         {/* Titolo */}
-                        <div className="gruppo form">
+                        <div>
                             <label htmlFor="title"> Nome Task:</label>
                             <input
                                 type="text"
@@ -50,7 +50,7 @@ function EditTaskModal(props) {
                         </div>
 
                         {/* Descrizione */}
-                        <div className="gruppo form">
+                        <div>
                             <label htmlFor="description"> Descrizione Task: </label>
                             <textarea
                                 id="description"
@@ -61,7 +61,7 @@ function EditTaskModal(props) {
                         </div>
 
                         {/* Stato */}
-                        <div className="gruppo form">
+                        <div>
                             <label htmlFor="status"> Stato: </label>
                             <select
                                 id="status"

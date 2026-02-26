@@ -3,6 +3,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useTasksContext } from '../context/TasksContext'
 import { useState } from "react";
 import Modal from "../components/Modal";
+import EditTaskModal from "../components/EditTaskModal";
 
 
 function TaskDetail() {
@@ -10,7 +11,7 @@ function TaskDetail() {
     // Destructuring
     const { id } = useParams();
     const numericId = parseInt(id);
-    const { tasks, removeTask } = useTasksContext();
+    const { tasks, removeTask, updateTask } = useTasksContext();
 
     // Recupero task
     const taskClicked = tasks.find(task => task.id === numericId);   
@@ -23,7 +24,8 @@ function TaskDetail() {
         HOOK
     *************/
     const navigate = useNavigate();
-    const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [showModalUpdate, setShowModalUpdate] = useState(false);
 
     /************
         RENDER
@@ -48,18 +50,30 @@ function TaskDetail() {
                 </p>
             </article>
 
-            {/* Bottone */}
-            <button onClick = {() => setShowModal(true)}>
-                Elimina Task
-            </button>
+            {/* Bottoni */}
+                <button onClick={() => setShowModalUpdate(true)}>
+                    Modifica Task
+                </button>
 
-            {/* Modale */}
+                <button onClick={() => setShowModalDelete(true)}>
+                    Elimina Task
+                </button>
+
+            {/* Modale Eliminazione */}
             <Modal
-                show={showModal}
+                show={showModalDelete}
                 title = {"Conferma Eliminazione"}
                 content = {`Sei sicuro di voler eliminare "${taskClicked.title}" ?`}
-                onConfirm = {onConfirm}
-                onClose={onClose}
+                onConfirm={handleDelete}
+                onClose={() => setShowModalDelete(false)}
+            />
+
+            {/* Modale Aggiornamento */}
+            <EditTaskModal
+                show={showModalUpdate}
+                onClose={() => setShowModalUpdate(false)}
+                task={taskClicked}
+                onSave={handleUpdate}
             />
             
         </>
@@ -69,12 +83,13 @@ function TaskDetail() {
         FUNZIONI
     ***************/
 
-    // Chiamata funzione per eliminare un Task
-    async function onConfirm() {
+    // Funzione che gestisce l'eliminazione di un task
+    async function handleDelete() {
 
         try {
             await removeTask(numericId);
             alert("Task eliminata con successo!");
+            setShowModalDelete(false);
             navigate("/");
             
         }
@@ -83,8 +98,17 @@ function TaskDetail() {
         }
     }
 
-    function onClose() {
-        setShowModal(false);
+    // Funzione che gestisce la modifica di un task
+    async function handleUpdate(updatedTask) {
+        try {
+            await updateTask(updatedTask);
+            alert("Task modificata con successo!");
+            setShowModalUpdate(false);
+            navigate("/");
+
+        } catch (error) {
+            alert(error.message);
+        }
     }
 }
 
