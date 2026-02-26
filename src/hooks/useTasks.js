@@ -63,10 +63,28 @@ function useTasks() {
     }
     
     // Funzione per modificare un task
-    function updateTask() {
+    async function updateTask(updatedTask) {
+        const response = await fetch(`${apiUrl}/tasks/${updatedTask.id}`,
+            {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedTask)
+            })
+        const data = await response.json();
 
+        // Controllo se success è true/false
+        if (data.success) {
+
+            setTasks(currTasks =>
+                currTasks.map(task => 
+                    task.id === updatedTask.id ? data.task : task
+                )
+            );
+        }
+        else {
+            throw new Error(data.message);
+        }
     }
-
 
     return { tasks, addTask, removeTask, updateTask};
 }
