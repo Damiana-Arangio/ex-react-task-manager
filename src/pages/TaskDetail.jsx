@@ -51,13 +51,15 @@ function TaskDetail() {
             </article>
 
             {/* Bottoni */}
-                <button onClick={() => setShowModalUpdate(true)}>
+            <div className="container-button">
+                <button className="btn-modifica" onClick={() => setShowModalUpdate(true)}>
                     Modifica Task
                 </button>
 
-                <button onClick={() => setShowModalDelete(true)}>
+                <button className="btn-elimina" onClick={() => setShowModalDelete(true)}>
                     Elimina Task
                 </button>
+            </div>
 
             {/* Modale Eliminazione */}
             <Modal

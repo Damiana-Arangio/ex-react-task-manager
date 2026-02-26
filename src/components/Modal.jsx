@@ -16,8 +16,10 @@ function Modal(props) {
                 {content}
 
                 {/* Bottoni */}
-                <button onClick={onClose}> Annulla </button>
-                <button onClick={onConfirm}> {confirmText} </button>
+                <div className="bottoni-modale">
+                    <button className="btn-modale-annulla" onClick={onClose}> Annulla </button>
+                    <button className="btn-modale-conferma" onClick={onConfirm}> {confirmText} </button>
+                </div>
             </div>
 
         </div>,

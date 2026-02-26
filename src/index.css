@@ -266,22 +266,44 @@ article p {
     color: #334155;
 }
 
-/* Bottone elimina fuori dal form */
-article+button {
-    display: block;
-    margin: 1rem auto 0 auto;
-    padding: 0.7rem 1.2rem;
+/* Bottoni */
+
+.container-button {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Stile base bottoni */
+.container-button button {
+    padding: 0.7rem 1.3rem;
     border: none;
     border-radius: 6px;
-    background-color: #ef4444;
-    color: #ffffff;
     font-weight: 500;
     font-size: 0.9rem;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-article+button:hover {
+/* Bottone Modifica */
+.btn-modifica {
+    background-color: #0ea5e9;
+    color: #ffffff;
+}
+
+.btn-modifica:hover {
+    background-color: #0284c7;
+    transform: translateY(-1px);
+}
+
+/* Bottone Elimina */
+.btn-elimina {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.btn-elimina:hover {
     background-color: #dc2626;
     transform: translateY(-1px);
 }
@@ -336,22 +358,40 @@ article+button:hover {
 }
 
 /* Bottone annulla */
-.modale button:first-of-type {
-    background-color: #e2e8f0;
-    color: #1e293b;
-    margin-right: 0.5rem;
+.bottoni-modale {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
 }
 
-.modale button:first-of-type:hover {
+/* Stile base bottoni modale */
+.bottoni-modale button {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Bottone Annulla */
+.btn-modale-annulla {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.btn-modale-annulla:hover {
     background-color: #cbd5e1;
 }
 
-/* Bottone conferma */
-.modale button:last-of-type {
+/* Bottone Conferma */
+.btn-modale-conferma {
     background-color: #ef4444;
     color: #ffffff;
 }
 
-.modale button:last-of-type:hover {
+.btn-modale-conferma:hover {
     background-color: #dc2626;
+    transform: translateY(-1px);
 }
