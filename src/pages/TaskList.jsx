@@ -1,7 +1,8 @@
 /* Pagina che mostra l'elenco dei Task */
 import { useTasksContext } from '../context/TasksContext'
 import TaskRow from '../components/TaskRow';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+
 
 function TaskList() {
     const { tasks } = useTasksContext();
@@ -12,7 +13,12 @@ function TaskList() {
     const [sortBy, setSortBy] = useState("createdAt");          // criterio di ordinamento (title, status, createdAt).
     const [sortOrder, setSortOrder] = useState(1);              // direzione (1 per crescente, -1 per decrescente)
     const [searchQuery, setSearchQuery] = useState("")          // memorizzare il valore dell'input di ricerca
-    
+
+    // Chiamata funzione di debounce
+    const funzioneRitardata = useCallback(
+        debounce(setSearchQuery, 500),
+        []);
+
     // Task ordinati
     const filteredAndSortedTasks = useMemo(() => {
         
@@ -106,8 +112,7 @@ function TaskList() {
             <input 
                 type="text"
                 placeholder='Cerca un task...'
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
+                onChange={e => funzioneRitardata(e.target.value)}
             />
 
             {/* Tabella task */ }
@@ -147,6 +152,26 @@ function TaskList() {
             setSortBy(column);
             setSortOrder(1);
         }
+    }
+
+    // Funzione di debounce generica
+    function debounce(callback, delay) {
+        let timer;
+
+        // Funzione interna che verrà eseguita quando l'utente digita
+        function funzioneRitardata(value) {
+
+            // Se esiste già un timer attivo lo cancello
+            clearTimeout(timer);
+
+            // Creo un nuovo timer
+            timer = setTimeout(function () {
+                callback(value);
+            }, delay);
+        }
+
+        // Restituisco la funzione interna
+        return funzioneRitardata;
     }
 }
 
