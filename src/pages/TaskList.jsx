@@ -109,11 +109,14 @@ function TaskList() {
         <>
 
             {/* Barra di ricerca */}
-            <input 
-                type="text"
-                placeholder='Cerca un task...'
-                onChange={e => funzioneRitardata(e.target.value)}
-            />
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Cerca un task..."
+                    onChange={e => funzioneRitardata(e.target.value)}
+                    className="search-input"
+                />
+            </div>
 
             {/* Tabella task */ }
             <table>
@@ -121,9 +124,21 @@ function TaskList() {
                 {/* Header */}
                 <thead>
                     <tr>
-                        <th onClick={() => handleSort("title")}>Nome</th>
-                        <th onClick={() => handleSort("status")}>Stato</th>
-                        <th onClick={() => handleSort("createdAt")}> Data di creazione </th>
+                        <th 
+                            className='colonna-ordinabile' 
+                            onClick={() => handleSort("title")}>    
+                                Nome {sortBy === "title" && (sortOrder === 1 ? "↑" : "↓")}
+                        </th>
+                        <th 
+                            className='colonna-ordinabile' 
+                            onClick={() => handleSort("status")}>    
+                                Stato {sortBy === "status" && (sortOrder === 1 ? "↑" : "↓")}
+                        </th>
+                        <th 
+                            className='colonna-ordinabile' 
+                            onClick={() => handleSort("createdAt")}>     
+                                Data di creazione {sortBy === "createdAt" && (sortOrder === 1 ? "↑" : "↓")} 
+                        </th>
                     </tr>
                 </thead>
 

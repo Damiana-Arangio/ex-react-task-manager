@@ -395,3 +395,45 @@ article p {
     background-color: #dc2626;
     transform: translateY(-1px);
 }
+
+/*******************
+    SEARCH BAR
+*******************/
+
+.search-container {
+    width: 80%;
+    margin: 2rem;
+}
+
+.search-input {
+    width: 300px;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
+}
+
+/***********************
+    COLONNE ORDINABILI
+************************/
+
+.colonna-ordinabile {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.colonna-ordinabile:hover {
+    background-color: #334155;
+}
