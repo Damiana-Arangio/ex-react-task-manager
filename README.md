@@ -1,16 +1,105 @@
-# React + Vite
+<h1 align="center">Task Manager</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Applicazione sviluppata con **React + Vite** per la gestione di task tramite operazioni CRUD complete, con attenzione all’esperienza utente.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Anteprima
 
-## React Compiler
+### Lista Task
+![Task List](public/screenshots/task-list.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+### Aggiunta Task
+![Add Task](public/screenshots/add-task.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+### Dettaglio Task
+![Task Detail](public/screenshots/task-detail.png)
+
+---
+
+### Modifica Task (Modal)
+![Edit Modal](public/screenshots/edit-modal.png)
+
+---
+
+### Elimina Task (Modal)
+![Delete Modal](public/screenshots/delete-modal.png)
+
+---
+
+## Funzionalità Implementate
+
+### 📌 Gestione Task (CRUD)
+
+- Recupero task da API (`GET`)
+- Creazione task (`POST`)
+- Modifica task (`PUT`)
+- Eliminazione task (`DELETE`)
+- Stato globale gestito con **Context API**
+- Logica centralizzata in un **custom hook `useTasks()`**
+
+---
+
+### 📌 Lista Task
+
+- Visualizzazione in tabella
+- Visualizzazione dettagliata del task al click
+- Stato colorato dinamicamente
+- Ottimizzazione del rendering della lista tramite `React.memo`
+- Ordinamento tramite indicatore visivo ↑ ↓ sulla colonna attiva per:
+  - Nome
+  - Stato
+  - Data di creazione
+
+---
+
+### 📌 Ricerca Ottimizzata
+
+- Filtro case-insensitive per nome
+- Debounce con `setTimeout`
+- Memoizzazione della funzione con `useCallback`
+- Ottimizzazione del ricalcolo con `useMemo`
+
+---
+
+### 📌 Modali Riutilizzabili
+
+- Componente `Modal` generico con `createPortal`
+- Conferma eliminazione task
+- Modale di modifica con form controllato
+- Gestione del submit della modale tramite `useRef`
+
+---
+
+## Tecnologie Utilizzate
+
+- React
+- React Router
+- Vite
+- Postman (test chiamate API)
+- CSS
+
+---
+
+## 🚀 Avvio del Progetto
+
+### Frontend
+```bash
+git clone https://github.com/Damiana-Arangio/task-manager.git
+cd task-manager
+npm install
+npm run dev
+```
+
+### Backend
+Il progetto utilizza un backend fornito da Boolean per la gestione delle API REST.
+
+```bash
+git clone https://github.com/boolean-it/react-task-manager-back
+cd react-task-manager-back
+npm install
+npm run start
+```
